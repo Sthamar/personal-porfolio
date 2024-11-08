@@ -1,15 +1,16 @@
 from django.shortcuts import render, HttpResponse
-from .models import Project, Profile, Skill, About
+from .models import Profile, Skill, About
+from blog.models import Blog
 
 
 # Create your views here.
 def home(request):
-    projects = Project.objects.all()[0]
+    projects = Blog.objects.all()[0:3]
     profile = Profile.objects.all()[0]
     skills = Skill.objects.all()
     about = About.objects.all()[0]
     context = {
-        'projects': projects,
+        'projects':projects,
         'profile': profile,
         'skills': skills,
         'about': about
@@ -20,13 +21,12 @@ def home(request):
 
 
 def about(request):
-    projects = Project.objects.all()[0]
     profile = Profile.objects.all()[0]
     skills = Skill.objects.all()
     about = About.objects.all()[0]
     first_name = profile.name.split()[0]
     context = {
-        'projects': projects,
+ 
         'profile': profile,
         'skills': skills,
         'about': about,
@@ -36,13 +36,12 @@ def about(request):
 
 
 def contact(request):
-    projects = Project.objects.all()[0]
+
     profile = Profile.objects.all()[0]
     skills = Skill.objects.all()
     about = About.objects.all()[0]
     first_name = profile.name.split()[0]
     context = {
-        'projects': projects,
         'profile': profile,
         'skills': skills,
         'about': about,
